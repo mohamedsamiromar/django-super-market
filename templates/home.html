@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+{% for product in products %}
+    <table border="1">
+        <tr>
+            <td><h3> {{ product.title }}</h3></td>
+        </tr>
+
+
+        <tr>
+            <td><h3> {{ product.description }} </h3></td>
+        </tr>
+
+
+        <tr>
+            <td><h3> {{ product.price_sale }}</h3></td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/cart" method="post">
+                     {% csrf_token %}
+                    <input type="hidden" name="productId" value="{{ product.id }}">
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </td>
+        </tr>
+
+
+
+    </table>
+{% endfor %}
+</body>
+</html>

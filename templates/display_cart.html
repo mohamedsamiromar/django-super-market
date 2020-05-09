@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="/checkout" method="post">
+ {% csrf_token %}
+{% if cart_items|length > 0 %}
+    <table >
+        {% for item in cart_items %}
+       <tr>
+           <td><h3>{{ item.product.title }}</h3></td>
+            <td><input type="hidden" name="productId_{{ forloop.counter0 }}" value="{{item.product.id}}"></td>
+            <td><input type="number" name="qty_{{ forloop.counter0 }}" value="{{ item.product.qty }}" ></td>
+        </tr>
+
+        {% endfor %}
+    <tr>
+        <td></td>
+        <td><a href="home.html"><button type="submit" value="Proceed to Checkout">Proceed to Checkout</button></a></td>
+    </tr>
+    </table>
+    {% elif cart_items|length == 0 %}
+    <h2>Please <a href="/home">Back To Home</a></h2>
+{% endif %}
+</form>
+</body>
+</html>

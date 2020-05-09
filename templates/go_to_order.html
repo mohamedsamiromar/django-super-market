@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>go to order</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>Order Id</th>
+        <th>Total Quantity</th>
+        <th>Total Price</th>
+        <th>Detalis</th>
+    </tr>
+
+
+    {% for orders in order %}
+        <tr>
+        <td>{{ orders.id }}</td>
+        <td>{{ orders.total_qty }}</td>
+        <td>{{ orders.total_price }}</td>
+        <td><a href="/order_details?orderId={{ order.id }}">details</a></td>
+        </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

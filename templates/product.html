@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .alert{
+                color: red;
+            }
+    </style>
+</head>
+<body>
+<h1>Create New Product</h1>
+<h5>Lets GO</h5>
+{% if form %}
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert">
+                    <strong>{{ field.name }} - {{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endif %}
+<form method="post" action="/products">
+        {% csrf_token %}
+
+    <table>
+        <tr>
+            <td>Title</td>
+            <td><input name="title" type="text"></td>
+            <th><button>Add To Cart</button></th>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td><input name="description" type="text" ></td>
+            <th><button>Add To Cart</button></th>
+        </tr>
+        <tr>
+            <td>Price Sale</td>
+            <td><input name="price_sale" type="number" ></td>
+            <th><button>Add To Cart</button></th>
+        </tr>
+        <tr>
+            <td>Price Cost</td>
+            <td><input type="number" name="price_cost" ></td>
+            <th><button>Add To Cart</button></th>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Save"></td>
+        </tr>
+    </table>
+</form>
+
+    <table border="1">
+        <h2>All Product</h2>
+
+        <tr>
+            <th>Title</th>
+            <th>Disc</th>
+            <th>Sale Price</th>
+            <th>Cost Price</th>
+        </tr>
+        {% for product in products %}
+            <tr>
+            <td>{{ product.title }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price_cost }}</td>
+            <td>{{ product.price_sale }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+
+</body>
+</html>

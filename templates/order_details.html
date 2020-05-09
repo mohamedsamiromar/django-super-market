@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<tr>
+    <td>Title</td>
+    <td>Price</td>
+    <td>Quantity</td>
+</tr>
+{% for item in order_items %}
+    <tr>
+    <td>{{ item.product.title }}</td>
+    <td>{{ item.product.price_sale }}</td>
+    <td>{{ item.qty }}</td>
+    </tr>
+{% endfor %}
+</body>
+</html>
