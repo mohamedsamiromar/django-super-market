@@ -1,1 +1,1 @@
-"# django-super-market" 
+# django-super-market
